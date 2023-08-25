@@ -47,7 +47,6 @@ function HomePage() {
               src="https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(70).webp"
             />
           </div> */}
-          <HomeLoading />
         </div>
       </div>
     </>
