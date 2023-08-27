@@ -7,27 +7,53 @@ import HomeError from "./components/Homepage/HomeError";
 const KEY = "39005119-efc4e36874eafd1fe0ee1ac91";
 
 export default function App() {
-  const [walls, setWalls] = useState({});
+  const [walls, setWalls] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
+    // const controller = new AbortController();
+
+    const fetchWalls = async () => {
+      fetch(
+        `https://pixabay.com/api/?key=${KEY}&q=${search}&image_type=photo`
+        // { signal: controller.signal }
+      )
+        .then((res) => res.json())
+        .then((data) => setWalls(data.hits))
+        .catch((err) => {
+          setIsError(true);
+          console.log(err);
+        });
+    };
     setIsLoading(true);
-    fetch(`https://pixabay.com/api/?key=${KEY}&q=moon&image_type=photo`)
-      .then((res) => res.json())
-      .then((data) => console.log(data.hits))
-      .catch((err) => {
-        setIsError(true);
-        console.log(err);
-      });
+
+    fetchWalls();
+
     setIsLoading(false);
-  }, []);
+
+    // return function () {
+    //   controller.abort();
+    // };
+  }, [search]);
+
+  // const onSearchHandler = (e) => {
+  //   e.PreventDefault();
+  //   setSearch(e.target.value);
+  // };
 
   return (
     <>
-      <NavBar />
+      <NavBar setSearch={setSearch} />
       {/* <HomePage /> */}
-      {isLoading ? <HomeLoading /> : isError ? <HomeError /> : ""}
+      {isLoading ? (
+        <HomeLoading />
+      ) : isError ? (
+        <HomeError />
+      ) : (
+        <HomePage walls={walls} />
+      )}
     </>
   );
 }
