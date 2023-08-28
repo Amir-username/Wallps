@@ -9,39 +9,80 @@ const KEY = "39005119-efc4e36874eafd1fe0ee1ac91";
 export default function App() {
   const [walls, setWalls] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const [search, setSearch] = useState("");
 
+  const abCtrl = new AbortController();
+  const signal = abCtrl.signal;
+
   useEffect(() => {
-    // const controller = new AbortController();
-
-    const fetchWalls = async () => {
-      fetch(
-        `https://pixabay.com/api/?key=${KEY}&q=${search}&image_type=photo`
-        // { signal: controller.signal }
-      )
-        .then((res) => res.json())
-        .then((data) => setWalls(data.hits))
-        .catch((err) => {
-          setIsError(true);
-          console.log(err);
-        });
+    async function fetchMovies() {
+      try {
+        setIsLoading(true);
+        setErrorMessage("");
+        const res =
+          search === ""
+            ? await fetch(
+                `https://pixabay.com/api/?key=${KEY}&q=${search}&image_type=photo`
+              )
+            : await fetch(
+                `https://pixabay.com/api/?key=${KEY}&q=${search}&image_type=photo`,
+                { signal }
+              );
+        console.log(res);
+        if (!res.ok)
+          throw new Error(
+            "Some error with fetching data.. please check your internet connection."
+          );
+        const data = await res.json();
+        if (data.Response === "False") {
+          throw new Error("cannot find any wallpaper :(");
+        }
+        setWalls(data.hits);
+      } catch (error) {
+        if (error instanceof Error && error.name !== "AbortError") {
+          setErrorMessage(error.message);
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchMovies();
+    return () => {
+      abCtrl.abort();
     };
-    setIsLoading(true);
+  }, [, search]);
 
-    fetchWalls();
+  // useEffect(() => {
+  //   // const controller = new AbortController();
 
-    setIsLoading(false);
+  //   const fetchWalls = async () => {
+  //     fetch(
+  //       `https://pixabay.com/api/?key=${KEY}&q=${search}&image_type=photo`
+  //       // { signal: controller.signal }
+  //     )
+  //       .then((res) => res.json())
+  //       .then((data) => setWalls(data.hits))
+  //       .catch((err) => {
+  //         setIsError(true);
+  //         console.log(err);
+  //       });
+  //   };
+  //   setIsLoading(true);
 
-    // return function () {
-    //   controller.abort();
-    // };
-  }, [search]);
+  //   fetchWalls();
 
-  // const onSearchHandler = (e) => {
-  //   e.PreventDefault();
-  //   setSearch(e.target.value);
-  // };
+  //   setIsLoading(false);
+
+  //   // return function () {
+  //   //   controller.abort();
+  //   // };
+  // }, [search]);
+
+  // // const onSearchHandler = (e) => {
+  // //   e.PreventDefault();
+  // //   setSearch(e.target.value);
+  // // };
 
   return (
     <>
@@ -49,7 +90,7 @@ export default function App() {
       {/* <HomePage /> */}
       {isLoading ? (
         <HomeLoading />
-      ) : isError ? (
+      ) : errorMessage ? (
         <HomeError />
       ) : (
         <HomePage walls={walls} />
