@@ -1,4 +1,6 @@
 import { useState } from "react";
+import LIKE from "../../assets/LIKE.svg";
+import LIKE_UN from "../../assets/LIKE_UN.svg";
 
 function WallItem({ wall }) {
   const [showDetail, setShowDetail] = useState(false);
@@ -10,11 +12,29 @@ function WallItem({ wall }) {
       className="flex flex-col gap-1"
     >
       <figure className="relative max-w-sm cursor-pointer">
-        <img className="w-96 hover:filter hover:brightness-50 duration-200 h-64 rounded-md" src={wall.webformatURL} />
-          <figcaption className={`${!showDetail && 'hidden'} absolute px-4 text-lg text-white bottom-6`}>
-            <p className="font-serif text-teal-200">{wall.tags}</p>
-            <p className="font-serif"><span className="text-teal-600">by</span>  <span className="font-semibold">{wall.user}</span></p>
-          </figcaption>
+        <img
+          className="w-96 hover:filter hover:brightness-50 duration-200 h-64 rounded-md"
+          src={wall.webformatURL}
+        />
+        <figcaption
+          className={`${
+            !showDetail && "hidden"
+          } absolute px-4 text-lg text-white bottom-6`}
+        >
+          <div className={`flex ${wall.tags.length < 30 ? "gap-32" : "gap-4"}`}>
+            <div className="flex flex-col gap-1">
+              <p className="font-serif text-teal-200">{wall.tags}</p>
+              <p className="font-serif">
+                <span className="text-teal-600">by</span>{" "}
+                <span className="font-semibold">{wall.user}</span>
+              </p>
+            </div>
+            <div className="flex gap-1">
+              <img src={LIKE} alt="like" className="w-6 h-6" />
+              <span className="text-sm font-bold mt-0.5">{wall.likes}</span>
+            </div>
+          </div>
+        </figcaption>
       </figure>
     </div>
   );
