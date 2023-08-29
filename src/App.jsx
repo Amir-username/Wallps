@@ -23,7 +23,7 @@ export default function App() {
         const res =
           search === ""
             ? await fetch(
-                `https://pixabay.com/api/?key=${KEY}&order=latest`
+                `https://pixabay.com/api/?key=${KEY}&order=latest&page=2`
               )
             : await fetch(
                 `https://pixabay.com/api/?key=${KEY}&q=${search}&image_type=photo`,

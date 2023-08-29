@@ -39,3 +39,5 @@ export const colors = [
 ];
 
 export const order = ["popular", "latest"];
+
+export const imageType = ["all", "photo", "illustration", "vector"];
