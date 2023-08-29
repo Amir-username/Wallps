@@ -1,4 +1,4 @@
-import { categories, colors, imageType, order } from "../../models/models";
+import { categories, colors, imageType, order, orientation } from "../../models/models";
 import Brand from "./Brand";
 import Categories from "./Categories";
 import Category from "./Category";
@@ -16,7 +16,7 @@ export default function NavBar({ setSearch }) {
           <NavDropDown items={colors} name={"colors"} />
           <NavDropDown items={order} name={"order"} />
           <NavDropDown items={imageType} name={"image type"} />
-          
+          <NavDropDown items={orientation} name={"orientation"} />
         </div>
         {/* <Categories /> */}
       </div>
