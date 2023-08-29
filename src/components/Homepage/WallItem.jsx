@@ -1,6 +1,7 @@
 import { useState } from "react";
 import LIKE from "../../assets/LIKE.svg";
 import LIKE_UN from "../../assets/LIKE_UN.svg";
+import COMMENT from "../../assets/COMMENTS.svg";
 
 function WallItem({ wall }) {
   const [showDetail, setShowDetail] = useState(false);
@@ -29,9 +30,17 @@ function WallItem({ wall }) {
                 <span className="font-semibold">{wall.user}</span>
               </p>
             </div>
-            <div className="flex gap-1">
-              <img src={LIKE} alt="like" className="w-6 h-6" />
-              <span className="text-sm font-bold mt-0.5">{wall.likes}</span>
+            <div className="flex flex-col mt-3">
+              <div className="flex gap-1">
+                <img src={LIKE} alt="like" className="w-6 h-6" />
+                <span className="text-sm font-bold mt-0.5 text-teal-400">{wall.likes}</span>
+              </div>
+              <div className="flex gap-1">
+                <img src={COMMENT} alt="like" className="w-6 h-6" />
+                <span className="text-sm font-bold mt-0.5">
+                  {wall.comments}
+                </span>
+              </div>
             </div>
           </div>
         </figcaption>
