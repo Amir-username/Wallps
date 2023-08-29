@@ -37,3 +37,5 @@ export const colors = [
   "black",
   "brown",
 ];
+
+export const order = ["popular", "latest"];
