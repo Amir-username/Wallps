@@ -1,4 +1,4 @@
-import { categories } from "../../models/models";
+import { categories, colors } from "../../models/models";
 import Brand from "./Brand";
 import Categories from "./Categories";
 import Category from "./Category";
@@ -13,6 +13,8 @@ export default function NavBar({ setSearch }) {
         <SearchBox setSearch={setSearch} />
         <div className="flex gap-10">
           <NavDropDown items={categories} name={"categories"} />
+          <NavDropDown items={colors} name={"colors"} />
+
         </div>
         {/* <Categories /> */}
       </div>
