@@ -2,7 +2,7 @@ import { useState } from "react";
 import { categories } from "../../models/models";
 import DropDownItem from "./DropDownItem";
 
-function NavDropDown({ items, name }) {
+function NavDropDown({ dispatch, items, name }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -34,16 +34,6 @@ function NavDropDown({ items, name }) {
             </svg>
           </button>
         </div>
-        {/*
-    Dropdown menu, show/hide based on menu state.
-
-        Entering: "transition ease-out duration-100"
-    From: "transform opacity-0 scale-95"
-    To: "transform opacity-100 scale-100"
-        Leaving: "transition ease-in duration-75"
-    From: "transform opacity-100 scale-100"
-    To: "transform opacity-0 scale-95"
-  */}
         <div
           className={`${
             !isOpen && "hidden"
@@ -54,9 +44,8 @@ function NavDropDown({ items, name }) {
           tabIndex={-1}
         >
           <div className="py-1" role="none">
-            {/* Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" */}
             {items.map((c) => {
-              return <DropDownItem item={c} key={c} />;
+              return <DropDownItem item={c} key={c} dispatch={dispatch} name={name}/>;
             })}
           </div>
         </div>

@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useReducer } from "react";
 import HomeLoading from "./components/Homepage/HomeLoading";
 import HomePage from "./components/Homepage/HomePage";
 import NavBar from "./components/Navbar/NavBar";
 import HomeError from "./components/Homepage/HomeError";
+import { filterReducer, filterState } from "./reducers/filterReducer";
 
 const KEY = "39005119-efc4e36874eafd1fe0ee1ac91";
 
@@ -11,6 +12,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [search, setSearch] = useState("");
+  const [state, dispatch] = useReducer(filterReducer, filterState);
 
   const abCtrl = new AbortController();
   const signal = abCtrl.signal;
@@ -23,12 +25,14 @@ export default function App() {
         const res =
           search === ""
             ? await fetch(
-                `https://pixabay.com/api/?key=${KEY}&order=latest`
+                `https://pixabay.com/api/?key=${KEY}&${
+                  state.filterType &&
+                  state.filterType + "=" + state.value
+                }`
               )
-            : await fetch(
-                `https://pixabay.com/api/?key=${KEY}&q=${search}`,
-                { signal }
-              );
+            : await fetch(`https://pixabay.com/api/?key=${KEY}&q=${search}`, {
+                signal,
+              });
         console.log(res);
         if (!res.ok)
           throw new Error(
@@ -51,42 +55,11 @@ export default function App() {
     return () => {
       abCtrl.abort();
     };
-  }, [, search]);
-
-  // useEffect(() => {
-  //   // const controller = new AbortController();
-
-  //   const fetchWalls = async () => {
-  //     fetch(
-  //       `https://pixabay.com/api/?key=${KEY}&q=${search}&image_type=photo`
-  //       // { signal: controller.signal }
-  //     )
-  //       .then((res) => res.json())
-  //       .then((data) => setWalls(data.hits))
-  //       .catch((err) => {
-  //         setIsError(true);
-  //         console.log(err);
-  //       });
-  //   };
-  //   setIsLoading(true);
-
-  //   fetchWalls();
-
-  //   setIsLoading(false);
-
-  //   // return function () {
-  //   //   controller.abort();
-  //   // };
-  // }, [search]);
-
-  // // const onSearchHandler = (e) => {
-  // //   e.PreventDefault();
-  // //   setSearch(e.target.value);
-  // // };
+  }, [, search, state]);
 
   return (
     <>
-      <NavBar setSearch={setSearch} />
+      <NavBar setSearch={setSearch} dispatch={dispatch} />
       {/* <HomePage /> */}
       {isLoading ? (
         <HomeLoading />
