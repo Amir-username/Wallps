@@ -26,17 +26,16 @@ export default function App() {
           search === ""
             ? await fetch(
                 `https://pixabay.com/api/?key=${KEY}&${
-                  state.filterType &&
-                  state.filterType + "=" + state.value
+                  state?.filterType &&
+                  state?.filterType + "=" + state?.value
                 }`
               )
             : await fetch(`https://pixabay.com/api/?key=${KEY}&q=${search}`, {
                 signal,
               });
-        console.log(res);
         if (!res.ok)
           throw new Error(
-            "Some error with fetching data.. please check your internet connection."
+            "Some error with fetching data.."
           );
         const data = await res.json();
         if (data.Response === "False") {
@@ -46,6 +45,7 @@ export default function App() {
       } catch (error) {
         if (error instanceof Error && error.name !== "AbortError") {
           setErrorMessage(error.message);
+          console.log(error.message);
         }
       } finally {
         setIsLoading(false);

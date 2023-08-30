@@ -23,10 +23,10 @@ export function filterReducer(state, action) {
         type: "order",
         value: action.payload,
       };
-    case "imageType":
+    case "image_type":
       return {
         ...state,
-        filterType: "imageType",
+        filterType: "image_type",
         value: action.payload,
       };
     case "orientation":
