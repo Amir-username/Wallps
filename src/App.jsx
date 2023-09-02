@@ -25,12 +25,12 @@ export default function App() {
         const res =
           search === ""
             ? await fetch(
-                `https://pixabay.com/api/?key=${KEY}&${
+                `https://pixabay.com/api/?key=${KEY}&safesearch=true&${
                   state?.filterType &&
                   state?.filterType + "=" + state?.value
                 }`
               )
-            : await fetch(`https://pixabay.com/api/?key=${KEY}&q=${search}`, {
+            : await fetch(`https://pixabay.com/api/?key=${KEY}&safesearch=true&q=${search}`, {
                 signal,
               });
         if (!res.ok)
