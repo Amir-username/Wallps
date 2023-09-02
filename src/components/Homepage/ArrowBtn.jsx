@@ -1,17 +1,17 @@
 import NEXT from "../../assets/NEXTBTN.svg";
 
-function ArrowBtn({ direction, pageNum, setPageNum }) {
+function ArrowBtn({ direction, pageNum, setPageNum, totalPages }) {
   const onPageNum = () => {
     if (direction === "left") {
       pageNum > 1 && setPageNum((p) => p - 1);
     } else if (direction === "right") {
-      setPageNum((p) => p + 1);
+      pageNum < totalPages && setPageNum((p) => p + 1);
     }
   };
   return (
     <button
     onClick={onPageNum}
-      disabled={direction === 'left' ? pageNum === 1 && true : false}
+      disabled={direction === 'left' ? pageNum === 1 && true : pageNum === totalPages && true}
       className={`bg-teal-600 rounded-md text-white p-2
        disabled:bg-gray-400 hover:bg-teal-500  ${
          direction === "left" && "rotate-180"
