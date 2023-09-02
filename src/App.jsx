@@ -12,6 +12,8 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [search, setSearch] = useState("");
+  const [pageNum, setPageNum] = useState(1);
+
   const [state, dispatch] = useReducer(filterReducer, filterState);
 
   const abCtrl = new AbortController();
@@ -25,18 +27,17 @@ export default function App() {
         const res =
           search === ""
             ? await fetch(
-                `https://pixabay.com/api/?key=${KEY}&safesearch=true&${
-                  state?.filterType &&
-                  state?.filterType + "=" + state?.value
+                `https://pixabay.com/api/?key=${KEY}&safesearch=true&page=${pageNum}&${
+                  state?.filterType && state?.filterType + "=" + state?.value
                 }`
               )
-            : await fetch(`https://pixabay.com/api/?key=${KEY}&safesearch=true&q=${search}`, {
-                signal,
-              });
-        if (!res.ok)
-          throw new Error(
-            "Some error with fetching data.."
-          );
+            : await fetch(
+                `https://pixabay.com/api/?key=${KEY}&safesearch=true&page=${pageNum}&q=${search}`,
+                {
+                  signal,
+                }
+              );
+        if (!res.ok) throw new Error("Some error with fetching data..");
         const data = await res.json();
         if (data.Response === "False") {
           throw new Error("cannot find any wallpaper :(");
@@ -55,7 +56,7 @@ export default function App() {
     return () => {
       abCtrl.abort();
     };
-  }, [, search, state]);
+  }, [, search, state, pageNum]);
 
   return (
     <>
@@ -66,7 +67,7 @@ export default function App() {
       ) : errorMessage ? (
         <HomeError />
       ) : (
-        <HomePage walls={walls} />
+        <HomePage walls={walls} pageNum={pageNum} setPageNum={setPageNum}/>
       )}
     </>
   );

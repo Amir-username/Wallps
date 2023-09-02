@@ -4,12 +4,12 @@ import PageItemList from "./PageItemList";
 import WallItem from "./WallItem";
 import WallpaperList from "./WallPaperList";
 
-function HomePage({ walls }) {
+function HomePage({ walls, pageNum, setPageNum }) {
   return (
     <>
       <div className="py-20 px-2.5">
        <WallpaperList walls={walls}/>
-       <PageItemList />
+       <PageItemList  pageNum={pageNum} setPageNum={setPageNum}/>
       </div>
     </>
   );
