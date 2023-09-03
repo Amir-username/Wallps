@@ -6,7 +6,7 @@ import HomeError from "./components/Homepage/HomeError";
 import { filterReducer, filterState } from "./reducers/filterReducer";
 
 const KEY = "39005119-efc4e36874eafd1fe0ee1ac91";
-const perPage = 40;
+const perPage = 20;
 
 export default function App() {
   const [walls, setWalls] = useState([]);
@@ -29,12 +29,12 @@ export default function App() {
         const res =
           search === ""
             ? await fetch(
-                `https://pixabay.com/api/?key=${KEY}&per_page=${perPage}&safesearch=false&page=${pageNum}&${
+                `https://pixabay.com/api/?key=${KEY}&per_page=${perPage}&safesearch=true&page=${pageNum}&${
                   state?.filterType && state?.filterType + "=" + state?.value
                 }`
               )
             : await fetch(
-                `https://pixabay.com/api/?key=${KEY}&per_page=${perPage}&safesearch=false&page=${pageNum}&q=${search}`,
+                `https://pixabay.com/api/?key=${KEY}&per_page=${perPage}&safesearch=true&page=${pageNum}&q=${search}`,
                 {
                   signal,
                 }
