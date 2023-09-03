@@ -4,6 +4,8 @@ import HomePage from "./components/Homepage/HomePage";
 import NavBar from "./components/Navbar/NavBar";
 import HomeError from "./components/Homepage/HomeError";
 import { filterReducer, filterState } from "./reducers/filterReducer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import WallPage from "./components/WallPage/WallPage";
 
 const KEY = "39005119-efc4e36874eafd1fe0ee1ac91";
 const perPage = 20;
@@ -64,19 +66,29 @@ export default function App() {
   return (
     <>
       <NavBar setSearch={setSearch} dispatch={dispatch} />
-      {/* <HomePage /> */}
-      {isLoading ? (
-        <HomeLoading />
-      ) : errorMessage ? (
-        <HomeError />
-      ) : (
-        <HomePage
-          walls={walls}
-          pageNum={pageNum}
-          setPageNum={setPageNum}
-          totalPages={totalImages / perPage}
-        />
-      )}
+
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              isLoading ? (
+                <HomeLoading />
+              ) : errorMessage ? (
+                <HomeError />
+              ) : (
+                <HomePage
+                  walls={walls}
+                  pageNum={pageNum}
+                  setPageNum={setPageNum}
+                  totalPages={totalImages / perPage}
+                />
+              )
+            }
+          />
+          <Route path={`/wall`} element={WallPage}/>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

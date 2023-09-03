@@ -17,7 +17,6 @@ export default function NavBar({ dispatch, setSearch}) {
           <NavDropDown items={order} name={"order"} dispatch={dispatch}/>
           <NavDropDown items={imageType} name={"image_type"} dispatch={dispatch}/>
         </div>
-        {/* <Categories /> */}
       </div>
     </>
   );
