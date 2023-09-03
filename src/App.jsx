@@ -6,7 +6,7 @@ import HomeError from "./components/Homepage/HomeError";
 import { filterReducer, filterState } from "./reducers/filterReducer";
 
 const KEY = "39005119-efc4e36874eafd1fe0ee1ac91";
-const perPage = 60;
+const perPage = 40;
 
 export default function App() {
   const [walls, setWalls] = useState([]);

@@ -6,12 +6,13 @@ function ArrowBtn({ direction, pageNum, setPageNum, totalPages }) {
       pageNum > 1 && setPageNum((p) => p - 1);
     } else if (direction === "right") {
       pageNum < totalPages && setPageNum((p) => p + 1);
+      console.log(totalPages);
     }
   };
   return (
     <button
     onClick={onPageNum}
-      disabled={direction === 'left' ? pageNum === 1 && true : pageNum === totalPages && true}
+      disabled={direction === 'left' ? pageNum === 1 && true : pageNum >= totalPages && true}
       className={`bg-teal-600 rounded-md text-white p-2
        disabled:bg-gray-400 hover:bg-teal-500  ${
          direction === "left" && "rotate-180"
