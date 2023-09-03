@@ -6,7 +6,6 @@ function ArrowBtn({ direction, pageNum, setPageNum, totalPages }) {
       pageNum > 1 && setPageNum((p) => p - 1);
     } else if (direction === "right") {
       pageNum < totalPages && setPageNum((p) => p + 1);
-      console.log(totalPages);
     }
   };
   return (

@@ -10,9 +10,21 @@ function PageItemList({ pageNum, setPageNum, totalPages }) {
         pageNum={pageNum}
         totalPages={totalPages}
       />
-      {pageNum >= 2 && <PageItem number={pageNum - 1} />}
-      <PageItem number={pageNum} />
-      {pageNum < totalPages && <PageItem number={pageNum + 1} />}
+      {pageNum >= 2 && (
+        <PageItem
+          number={pageNum - 1}
+          setPageNum={setPageNum}
+          currPage={pageNum}
+        />
+      )}
+      <PageItem number={pageNum} setPageNum={setPageNum} currPage={pageNum} />
+      {pageNum < totalPages && (
+        <PageItem
+          number={pageNum + 1}
+          setPageNum={setPageNum}
+          currPage={pageNum}
+        />
+      )}
       <ArrowBtn
         direction={"right"}
         setPageNum={setPageNum}
