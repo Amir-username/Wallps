@@ -29,7 +29,7 @@ export default function App() {
         const res =
           search === ""
             ? await fetch(
-                `https://pixabay.com/api/?key=${KEY}&per_page=${perPage}&safesearch=true&page=${pageNum}&${
+                `https://pixabay.com/api/?key=${KEY}&orientation=horizontal&per_page=${perPage}&safesearch=true&page=${pageNum}&${
                   state?.filterType && state?.filterType + "=" + state?.value
                 }`
               )
@@ -45,7 +45,7 @@ export default function App() {
           throw new Error("cannot find any wallpaper :(");
         }
         setWalls(data.hits);
-        setTotalImages(data.totalHits)
+        setTotalImages(data.totalHits);
       } catch (error) {
         if (error instanceof Error && error.name !== "AbortError") {
           setErrorMessage(error.message);
@@ -70,7 +70,12 @@ export default function App() {
       ) : errorMessage ? (
         <HomeError />
       ) : (
-        <HomePage walls={walls} pageNum={pageNum} setPageNum={setPageNum} totalPages={totalImages / perPage}/>
+        <HomePage
+          walls={walls}
+          pageNum={pageNum}
+          setPageNum={setPageNum}
+          totalPages={totalImages / perPage}
+        />
       )}
     </>
   );

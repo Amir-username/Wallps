@@ -14,7 +14,7 @@ function WallItem({ wall }) {
     >
       <figure className="relative max-w-sm cursor-pointer">
         <img
-          className="w-96 hover:filter hover:brightness-50 duration-200 h-64 rounded-md"
+          className={`w-96 h-64 hover:filter hover:brightness-50 duration-200 rounded-md`}
           src={wall.webformatURL}
         />
         <figcaption

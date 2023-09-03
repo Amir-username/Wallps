@@ -10,8 +10,12 @@ function ArrowBtn({ direction, pageNum, setPageNum, totalPages }) {
   };
   return (
     <button
-    onClick={onPageNum}
-      disabled={direction === 'left' ? pageNum === 1 && true : pageNum >= totalPages && true}
+      onClick={onPageNum}
+      disabled={
+        direction === "left"
+          ? pageNum === 1 && true
+          : pageNum >= totalPages && true
+      }
       className={`bg-teal-600 rounded-md text-white p-2
        disabled:bg-gray-400 hover:bg-teal-500  ${
          direction === "left" && "rotate-180"

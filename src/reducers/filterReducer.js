@@ -29,11 +29,5 @@ export function filterReducer(state, action) {
         filterType: "image_type",
         value: action.payload,
       };
-    case "orientation":
-      return {
-        ...state,
-        filterType: "orientation",
-        value: action.payload,
-      };
   }
 }

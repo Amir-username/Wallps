@@ -19,7 +19,7 @@ function NavDropDown({ dispatch, items, name }) {
             aria-expanded="true"
             aria-haspopup="true"
           >
-            {name}
+            {name == 'image_type' ? 'image type' : name}
             <svg
               className="-mr-1 h-5 w-5 text-teal-500 mt-0.5"
               viewBox="0 0 20 20"
