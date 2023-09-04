@@ -86,7 +86,7 @@ export default function App() {
               )
             }
           />
-          <Route path={`/wall`} element={WallPage}/>
+          <Route path="wallpage/:id" element={<WallPage />} />
         </Routes>
       </BrowserRouter>
     </>
