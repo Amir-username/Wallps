@@ -81,6 +81,7 @@ export default function App() {
                   pageNum={pageNum}
                   setPageNum={setPageNum}
                   totalPages={totalImages / perPage}
+                  search={search}
                 />
               )
             }
