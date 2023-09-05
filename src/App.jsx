@@ -65,9 +65,8 @@ export default function App() {
 
   return (
     <>
-      <NavBar setSearch={setSearch} dispatch={dispatch} />
-
       <BrowserRouter>
+        <NavBar setSearch={setSearch} dispatch={dispatch} />
         <Routes>
           <Route
             path="/"
