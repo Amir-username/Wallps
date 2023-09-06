@@ -6,16 +6,16 @@ function WallPage() {
 
   return (
     <>
-      <div className="flex items-center justify-center text-black h-screen pt-96 mb-72">
-        <div className="flex flex-col pt-32 gap-8 justify-center items-center pb-8">
+      <div className="flex items-center justify-center text-black h-screen md:pt-96 pt-52 md:mb-72">
+        <div className="flex flex-col md:pt-32 gap-8 justify-center items-center pb-8">
           <img
-            className="rounded-lg shadow-lg shadow-teal-700"
+            className="rounded-lg md:shadow-xl shadow-md shadow-teal-700 md:w-auto md:h-auto w-96 h-64"
             src={wall.largeImageURL}
             alt=""
           />
           <div
-            className="flex gap-40 items-center justify-center shadow-md
-           shadow-teal-400 ring-1 ring-teal-200 rounded-full p-8 text-teal-700 text-xl"
+            className="flex md:flex-row flex-col md:gap-40 space-y-8 md:space-y-0 md:w-auto md:h-auto items-center justify-center shadow-md
+           shadow-teal-400 ring-1 ring-teal-200 md:rounded-full rounded-xl md:p-8 p-10 text-teal-700 md:text-xl text-lg"
           >
             <p>
               <span className="font-semibold">{wall.tags}</span>
