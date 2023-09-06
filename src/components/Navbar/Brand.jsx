@@ -4,7 +4,7 @@ function Brand() {
   return (
     <>
       <Link to={"/"}>
-        <div className="flex gap-1 cursor-pointer items-center justify-center w-full">
+        <div className="flex gap-1 cursor-pointer">
           <p className="w-10 h-10 rounded-md bg-teal-500 font-bold pt-1 text-white text-center text-2xl">
             W
           </p>
