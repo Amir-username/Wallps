@@ -47,7 +47,7 @@ export default function NavBar({ dispatch, setSearch }) {
           />
         </div>
       </div>
-      <div className={`${!isOpen ? 'hidden' : ''} pt-16`}>
+      <div className={`${!isOpen ? 'hidden' : ''} md:hidden pt-16`}>
         <div className="space-y-1 p-2.5 w-screen bg-teal-700 flex flex-col">
           {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
           <NavDropDown
