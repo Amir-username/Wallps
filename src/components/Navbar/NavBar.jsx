@@ -20,7 +20,7 @@ export default function NavBar({ dispatch, setSearch }) {
     <>
       <div className="flex space-x-3 z-40 fixed md:space-x-20 justify-start p-2 bg-gray-50 w-screen h-16 shadow-md shadow-gray-300">
         <Brand />
-        {/* <SearchBox setSearch={setSearch} /> */}
+        <SearchBox setSearch={setSearch} />
 
         <div className="hidden md:visible md:flex gap-10">
           <NavDropDown
@@ -36,18 +36,16 @@ export default function NavBar({ dispatch, setSearch }) {
             dispatch={dispatch}
           />
         </div>
-        <div
-          className="md:hidden flex items-end justify-end w-screen"
-          onClick={() => setIsOpen((o) => !o)}
-        >
+        <div className="md:hidden flex items-end justify-end w-screen">
           <img
+            onClick={() => setIsOpen((o) => !o)}
             src={MENU}
             alt=""
             className="w-16 h-16 pr-3 pt-2.5 cursor-pointer"
           />
         </div>
       </div>
-      <div className={`${!isOpen ? 'hidden' : ''} md:hidden pt-16`}>
+      <div className={`${!isOpen ? "hidden" : ""} md:hidden pt-16`}>
         <div className="space-y-1 p-2.5 w-screen bg-teal-700 flex flex-col">
           {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
           <NavDropDown
