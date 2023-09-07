@@ -17,7 +17,7 @@ function ArrowBtn({ direction, pageNum, setPageNum, totalPages }) {
           : pageNum >= totalPages && true
       }
       className={`bg-teal-600 rounded-md text-white p-2
-       disabled:bg-gray-400 hover:bg-teal-500  ${
+       disabled:bg-gray-400 dark:disabled:bg-gray-700 hover:bg-teal-500  ${
          direction === "left" && "rotate-180"
        }`}
     >
