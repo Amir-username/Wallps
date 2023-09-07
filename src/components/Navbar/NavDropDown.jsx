@@ -14,7 +14,7 @@ function NavDropDown({ dispatch, items, name }) {
         <div>
           <button
             type="button"
-            className="inline-flex w-full justify-center gap-x-1.5 uppercase rounded-md bg-gray-50 px-3 py-2 text-sm font-semibold text-teal-500 hover:bg-teal-100 duration-200"
+            className="inline-flex w-full justify-center gap-x-1.5 uppercase rounded-md bg-gray-50 dark:bg-gray-900 px-3 py-2 text-sm font-semibold text-teal-500 dark:text-teal-300 hover:bg-teal-100 dark:hover:bg-teal-900 duration-200"
             id="menu-button"
             aria-expanded="true"
             aria-haspopup="true"
@@ -37,7 +37,7 @@ function NavDropDown({ dispatch, items, name }) {
         <div
           className={`${
             !isOpen && "hidden"
-          } absolute right-0 z-10 mt-2 ml-10 mid:w-40 w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+          } absolute right-0 z-10 mt-2 ml-10 mid:w-40 w-full origin-top-right rounded-md bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"

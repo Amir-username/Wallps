@@ -18,7 +18,7 @@ export default function NavBar({ dispatch, setSearch }) {
 
   return (
     <>
-      <div className="flex space-x-3 z-40 fixed md:space-x-20 justify-start p-2 bg-gray-50 w-screen h-16 shadow-md shadow-gray-300">
+      <div className="flex space-x-3 z-40 fixed md:space-x-20 justify-start p-2 bg-gray-50 dark:bg-gray-900 w-screen h-16 shadow-md shadow-gray-300 dark:shadow-teal-600">
         <Brand />
         <SearchBox setSearch={setSearch} />
 
@@ -46,7 +46,7 @@ export default function NavBar({ dispatch, setSearch }) {
         </div>
       </div>
       <div className={`${!isOpen ? "hidden" : ""} md:hidden pt-16`}>
-        <div className="space-y-1 p-2.5 w-screen bg-teal-700 flex flex-col">
+        <div className="space-y-1 p-2.5 w-screen bg-teal-700 dark:bg-gray-800 flex flex-col">
           {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
           <NavDropDown
             items={categories}
