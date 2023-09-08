@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WallPage from "./components/WallPage/WallPage";
 
 const KEY = "39005119-efc4e36874eafd1fe0ee1ac91";
-const perPage = 20;
+const perPage = 40;
 
 export default function App() {
   const [walls, setWalls] = useState([]);
