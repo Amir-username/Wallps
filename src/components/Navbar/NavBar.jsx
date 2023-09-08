@@ -11,15 +11,28 @@ import Category from "./Category";
 import NavDropDown from "./NavDropDown";
 import SearchBox from "./SearchBox";
 import MENU from "../../assets/MENU.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import SUN from "../../assets/SUN.svg";
+import MOON from "../../assets/MOON.svg";
 
 export default function NavBar({ dispatch, setSearch }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    if (isDark) {
+      setTimeout('document.documentElement.className = "dark"', 500);
+    } else {
+      setTimeout('document.documentElement.className = "light"', 500);
+    }
+  }, [isDark]);
 
   return (
     <>
-      <div className="flex space-x-3 z-40 fixed md:space-x-20 justify-start p-2 bg-gray-50 dark:bg-gray-900 
-      w-screen h-16 shadow-md shadow-gray-300 dark:shadow-teal-700 dark:shadow-none">
+      <div
+        className="flex space-x-3 z-40 fixed md:space-x-20 justify-start p-2 bg-gray-50 dark:bg-gray-900 
+      w-screen h-16 shadow-md shadow-gray-300 dark:shadow-teal-700 dark:shadow-none"
+      >
         <Brand />
         <SearchBox setSearch={setSearch} />
 
@@ -44,6 +57,23 @@ export default function NavBar({ dispatch, setSearch }) {
             alt=""
             className="w-16 h-16 pr-3 pt-2.5 cursor-pointer"
           />
+        </div>
+        <div className="flex justify-end items-end w-52 pb-0.5">
+          {!isDark ? (
+            <img
+              src={SUN}
+              alt="light"
+              className="w-10 h-10 cursor-pointer"
+              onClick={() => setIsDark((d) => !d)}
+            />
+          ) : (
+            <img
+              src={MOON}
+              alt="dark"
+              className="w-7 h-7 cursor-pointer mb-2 mr-0.5"
+              onClick={() => setIsDark((d) => !d)}
+            />
+          )}
         </div>
       </div>
       <div className={`${!isOpen ? "hidden" : ""} md:hidden pt-16`}>
