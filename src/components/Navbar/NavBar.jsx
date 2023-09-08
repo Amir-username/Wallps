@@ -58,7 +58,7 @@ export default function NavBar({ dispatch, setSearch }) {
             className="w-16 h-16 pr-3 pt-2.5 cursor-pointer"
           />
         </div>
-        <div className="flex justify-end items-end w-52 pb-0.5">
+        <div className="hidden md:visible md:flex justify-end items-end w-52 pb-0.5">
           {!isDark ? (
             <img
               src={SUN}
@@ -77,7 +77,7 @@ export default function NavBar({ dispatch, setSearch }) {
         </div>
       </div>
       <div className={`${!isOpen ? "hidden" : ""} md:hidden pt-16`}>
-        <div className="space-y-1 p-2.5 w-screen bg-teal-700 dark:bg-gray-800 flex flex-col">
+        <div className="space-y-1 p-2.5 w-screen bg-gray-200 dark:bg-gray-800 flex flex-col">
           {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
           <NavDropDown
             items={categories}
@@ -91,6 +91,23 @@ export default function NavBar({ dispatch, setSearch }) {
             name={"image_type"}
             dispatch={dispatch}
           />
+        <div className="self-center p-1">
+          {!isDark ? (
+            <img
+              src={SUN}
+              alt="light"
+              className="w-10 h-10 cursor-pointer"
+              onClick={() => setIsDark((d) => !d)}
+            />
+          ) : (
+            <img
+              src={MOON}
+              alt="dark"
+              className="w-7 h-7 cursor-pointer mt-1 ml-0.5"
+              onClick={() => setIsDark((d) => !d)}
+            />
+          )}
+        </div>
         </div>
       </div>
     </>

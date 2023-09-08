@@ -7,7 +7,7 @@ function SearchBox({setSearch}) {
         <img src={search} className="w-6 h-6 mt-2 pl-1 md:mt-0.5" />
         <input
         onChange={(e)=>setSearch(e.target.value)}
-          className="bg-gray-100 dark:bg-gray-800 text-lg p-1 md:w-96 focus:outline-none text-gray-500 dark:text-gray-300"
+          className="bg-gray-100 dark:bg-gray-800 text-lg p-1 md:w-96 w-4 focus:outline-none text-gray-500 dark:text-gray-300"
           type="search"
           placeholder="search walls"
         />
